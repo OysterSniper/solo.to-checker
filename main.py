@@ -6,14 +6,14 @@ from time import sleep
 from os import system
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
-
+headers = {'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 system("")
 
 names = open('usernames.txt', 'r').read().splitlines()  # read names from file
 
 
 def check(name):
-    r = requests.get(f'https://solo.to/{name}')
+    r = requests.get(f'https://solo.to/{name}', headers=headers)
     if r.status_code == 404:
         logging.info(f"{Fore.GREEN}[AVAILABLE] {name}")
         with open('available.txt', 'a') as f:
